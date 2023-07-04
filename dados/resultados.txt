@@ -1,0 +1,1318 @@
+
+1º jogador: X
+2º jogador: O
+
+"xis" GANHOU.
+
+como o jogo terminou: 
+
+   |    |
+ X | X  | X
+=============
+ O | O  | X
+=============
+ O | X  | O
+   |    |
+
+
+1º jogador: X
+2º jogador: O
+
+"xis" GANHOU.
+
+como o jogo terminou: 
+
+   |    |
+ X | O  | X
+=============
+ O | X  | O
+=============
+ X | X  | O
+   |    |
+
+
+1º jogador: 'X'	2º jogador: 'O'
+		"xis" GANHOU.
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+   | X  | X
+=============
+   | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+ X | O  | X
+=============
+   |    | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+   | O  | O
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  | X
+=============
+ X | O  | O
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  |  
+=============
+ O | X  |  
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+ X | O  | X
+=============
+   |    | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | O
+=============
+ X | X  |  
+=============
+   |    | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  | X
+=============
+ X | X  | O
+=============
+ O | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+ X | O  | X
+=============
+ X | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | X
+=============
+ X | O  |  
+=============
+ X | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+   |    |  
+=============
+   |    |  
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+   |    |  
+=============
+   |    |  
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ X |    | X
+=============
+ X | O  | O
+=============
+ O | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+   | O  | O
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+ X | X  | X
+=============
+   | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O |    |  
+=============
+ X | X  | X
+=============
+ O | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+ X | O  | O
+=============
+   |    | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+   | O  | O
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | O
+=============
+ X | X  |  
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | O
+=============
+ X | X  |  
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | O
+=============
+   | X  | X
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+   | O  | O
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | O  |  
+=============
+ X | X  | X
+=============
+   |    | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+ O | O  |  
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    |  
+=============
+   | O  | O
+=============
+ X | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | O  | O
+=============
+ X | X  | X
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  |  
+=============
+ X | O  |  
+=============
+ X |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  |  
+=============
+ X | O  |  
+=============
+ X |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    | X
+=============
+ O | O  | O
+=============
+   |    | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    |  
+=============
+ X | O  |  
+=============
+ X | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | X  |  
+=============
+ O | X  |  
+=============
+ O | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    | X
+=============
+   | O  | X
+=============
+   | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | X
+=============
+   | O  | O
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    |  
+=============
+ O | O  |  
+=============
+ X | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | O  | X
+=============
+   | X  |  
+=============
+ X | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    |  
+=============
+ X | X  | X
+=============
+   | O  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+ O | X  | X
+=============
+ X | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    | X
+=============
+ O | X  | O
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | X
+=============
+ O | X  | X
+=============
+ O | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | X
+=============
+ O | X  | O
+=============
+ X | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    |  
+=============
+ O | X  |  
+=============
+   | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | X
+=============
+ O | X  | X
+=============
+ O | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | X
+=============
+   | X  | O
+=============
+   | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    |  
+=============
+ X | O  |  
+=============
+ X | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+ O | X  |  
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | O  | O
+=============
+ X | X  | X
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    | O
+=============
+   | O  |  
+=============
+ X | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    | O
+=============
+ X | O  |  
+=============
+ O | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | O
+=============
+ X | O  |  
+=============
+ X |    | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | O  |  
+=============
+   | O  | X
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   | X  | O
+=============
+   | X  | O
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  | X
+=============
+ X | O  | O
+=============
+ O | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O |    |  
+=============
+ O | X  | X
+=============
+ O | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    |  
+=============
+ X | O  |  
+=============
+ X | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+ X | O  |  
+=============
+   | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+   | O  | X
+=============
+   | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+   | X  |  
+=============
+ O | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O | X  |  
+=============
+ O | X  |  
+=============
+   | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+   | X  |  
+=============
+ O |    |  
+=============
+   |    |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | X  | O
+=============
+ O | O  | X
+=============
+ O | X  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	jogo EMPATADO.
+
+como o jogo terminou:"
+
+   |    |
+ O | O  | X
+=============
+ X | X  | O
+=============
+ O | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+ O | X  | X
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+ O | X  | X
+=============
+ X | O  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X | O  | O
+=============
+   | O  |  
+=============
+ X | X  | X
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"xis" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ X |    |  
+=============
+ X | O  |  
+=============
+ X | O  |  
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+   |    | O
+=============
+ X | X  | O
+=============
+   | X  | O
+   |    |
+
+
+
+1º jogador: 'X'	2º jogador: 'O'
+
+	"quadrado" GANHOU.
+
+como o jogo terminou:"
+
+   |    |
+ O |    |  
+=============
+ O | X  | X
+=============
+ O |    | X
+   |    |
+
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       ++++++++++++++++++         |           |    |                           
+       +                +         |         O | X  |                           
+       +  "xis" GANHOU. +         |        =============                       
+       +                +         |           | X  |                           
+       ++++++++++++++++++         |        =============                       
+                                  |           | X  | O                         
+                                  |           |    |                           
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       +++++++++++++++++++++++    |           |    |                           
+       +                     +    |         O | O  | O                         
+       +  "quadrado" GANHOU. +    |        =============                       
+       +                     +    |         X | X  |                           
+       +++++++++++++++++++++++    |        =============                       
+                                  |         O | X  | X                         
+                                  |           |    |                           
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       ++++++++++++++++++         |           |    |                           
+       +                +         |         O | X  | O                         
+       +  "xis" GANHOU. +         |        =============                       
+       +                +         |         X | X  | X                         
+       ++++++++++++++++++         |        =============                       
+                                  |         O | X  | O                         
+                                  |           |    |                           
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       ++++++++++++++++++         |           |     |                          
+       +                +         |         O |  X  |                          
+       +  "xis" GANHOU. +         |        ==============                      
+       +                +         |         O |  X  |                          
+       ++++++++++++++++++         |        ==============                      
+                                  |           | X  |                           
+                                  |           |     |                          
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       +++++++++++++++++++++++    |           |     |                          
+       +                     +    |         X |  O  |                          
+       +  "quadrado" GANHOU. +    |        ==============                      
+       +                     +    |         X |  O  | X                        
+       +++++++++++++++++++++++    |        ==============                      
+                                  |           |  O  |                          
+                                  |           |     |                          
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                  
+                                  |                                            
+       ++++++++++++++++++         |           |     |                          
+       +                +         |         X |  O  | X                        
+       +  "xis" GANHOU. +         |        ==============                      
+       +                +         |         O |  X  | O                        
+       ++++++++++++++++++         |        ==============                      
+                                  |           |     | X                        
+                                  |           |     |                          
+                                  |                                            
+                                                                               
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                    
+                                  |                                              
+       +++++++++++++++++++++++    |           |     |                            
+       +                     +    |         O |  X  |                            
+       +  "quadrado" GANHOU. +    |        ==============                        
+       +                     +    |         O |  X  | X                          
+       +++++++++++++++++++++++    |        ==============                        
+                                  |         O |     |                            
+                                  |           |     |                            
+                                  |                                              
+                                                                                 
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                    
+                                  |                                              
+       +++++++++++++++++++++++    |           |     |                            
+       +                     +    |         X |  X  | O                          
+       +  "quadrado" GANHOU. +    |        ==============                        
+       +                     +    |           |  O  | X                          
+       +++++++++++++++++++++++    |        ==============                        
+                                  |         O |  O  | X                          
+                                  |           |     |                            
+                                  |                                              
+                                                                                 
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                    
+                                  |                                              
+       +++++++++++++++++++        |           |     |                            
+       +                 +        |         O |  X  | O                          
+       +  jogo EMPATADO. +        |        ==============                        
+       +                 +        |         X |  O  | X                          
+       +++++++++++++++++++        |        ==============                        
+                                  |         X |  O  | X                          
+                                  |           |     |                            
+                                  |                                              
+                                                                                 
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                   
+                                  |                                                             
+       +++++++++++++++++++++++    |           |     |                                           
+       +                     +    |         X |  X  | O                                         
+       +  "quadrado" GANHOU. +    |        ==============                                       
+       +                     +    |           |  O  |                                           
+       +++++++++++++++++++++++    |        ==============                                       
+                                  |         O |     | X                                         
+                                  |           |     |                                           
+                                  |                                                             
+                                                                                                
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                                                                          
+                                  |                                                                                                                    
+       ++++++++++++++++++         |           |     |                                                                                                  
+       +                +         |           |  O  | X                                                                                                
+       +  "xis" GANHOU. +         |        ==============                                                                                              
+       +                +         |           |  O  | O                                                                                                
+       ++++++++++++++++++         |        ==============                                                                                              
+                                  |         X |  X  | X                                                                                                
+                                  |           |     |                                                                                                  
+                                  |                                                                                                                    
+                                                                                                                                                       
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                   
+                                  |                                                             
+       +++++++++++++++++++++++    |           |     |                                           
+       +                     +    |         X |  X  |                                           
+       +  "quadrado" GANHOU. +    |        ==============                                       
+       +                     +    |         O |  O  | O                                         
+       +++++++++++++++++++++++    |        ==============                                       
+                                  |           |  X  |                                           
+                                  |           |     |                                           
+                                  |                                                             
+                                                                                                
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                   
+                                  |                                                             
+       ++++++++++++++++++         |           |     |                                           
+       +                +         |         X |  O  | X                                         
+       +  "xis" GANHOU. +         |        ==============                                       
+       +                +         |         O |  X  | O                                         
+       ++++++++++++++++++         |        ==============                                       
+                                  |           |     | X                                         
+                                  |           |     |                                           
+                                  |                                                             
+                                                                                                
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                   
+                                  |                                                             
+       ++++++++++++++++++         |           |     |                                           
+       +                +         |         X |  O  | X                                         
+       +  "xis" GANHOU. +         |        ==============                                       
+       +                +         |           |  X  | O                                         
+       ++++++++++++++++++         |        ==============                                       
+                                  |           |  O  | X                                         
+                                  |           |     |                                           
+                                  |                                                             
+                                                                                                
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                   
+                                  |                                                             
+       +++++++++++++++++++        |           |     |                                           
+       +                 +        |           |     |                                           
+       +  jogo EMPATADO. +        |        ==============                                       
+       +                 +        |           |     |                                           
+       +++++++++++++++++++        |        ==============                                       
+                                  |           |     |                                           
+                                  |           |     |                                           
+                                  |                                                             
+                                                                                                
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                                                                          
+                                  |                                                                                                                    
+       +++++++++++++++++++        |           |     |                                                                                                  
+       +                 +        |         X |  X  | O                                                                                                
+       +  jogo EMPATADO. +        |        ==============                                                                                              
+       +                 +        |         O |  X  | X                                                                                                
+       +++++++++++++++++++        |        ==============                                                                                              
+                                  |         X |  O  | O                                                                                                
+                                  |           |     |                                                                                                  
+                                  |                                                                                                                    
+                                                                                                                                                       
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                                                                          
+                                  |                                                                                                                    
+       +++++++++++++++++++++++    |           |     |                                                                                                  
+       +                     +    |         X |     | X                                                                                                
+       +  "quadrado" GANHOU. +    |        ==============                                                                                              
+       +                     +    |         O |  O  | O                                                                                                
+       +++++++++++++++++++++++    |        ==============                                                                                              
+                                  |         X |  O  | X                                                                                                
+                                  |           |     |                                                                                                  
+                                  |                                                                                                                    
+                                                                                                                                                       
+
+1º jogador: 'X'	2º jogador: 'O'         como o jogo terminou:                                
+                                  |                                                          
+       ++++++++++++++++++         |           |     |                                        
+       +                +         |         X |  O  |                                        
+       +  "xis" GANHOU. +         |        ==============                                    
+       +                +         |         O |  X  | O                                      
+       ++++++++++++++++++         |        ==============                                    
+                                  |           |  X  | X                                      
+                                  |           |     |                                        
+                                  |                                                          
+                                                                                             
+
