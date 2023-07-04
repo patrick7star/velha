@@ -1,4 +1,4 @@
-# velha
+# Jogo da Velha '#'
 Jogo da velha, usando uma "interface gráfica" do terminal(ncurses), funciona quase inteiramente via mouse, porém futuramente também funcionará via teclado
 
 
