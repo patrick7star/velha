@@ -1,4 +1,4 @@
-#!/bin/python3.8 -BO
+#!/bin/python3 -BO
 
 # biblioteca do jogo.
 from codigo.tabuleiro import *
@@ -11,34 +11,82 @@ from biblioteca_externa.utilitarios.lib import tela
 # dício contendo todos os DOIS possíveis
 # jogadores.
 jogadores = {
-   True: xis, 
+   True: xis,
    False: quadrado
 }
 # peça xis, sempre o primeiro.
-primeiro = True 
+primeiro = True
 # instância o tabuleiro para o jogo(inicializa
 # a "interface gráfica").
 tabuleiro = Tabuleiro('&')
 
+from codigo.ponto import Direcao
+from curses import (
+   KEY_RIGHT, KEY_LEFT,
+   KEY_DOWN, KEY_UP, KEY_ENTER
+)
+# fazendo com que o teclado também funcione
+# para marcar posições, navegando através
+# do jogo.
+def converte_em_direcoes(code: int) -> Direcao:
+   if code == KEY_UP:
+      return Direcao.CIMA
+   elif KEY_DOWN == code:
+      return Direcao.BAIXO
+   elif KEY_LEFT == code:
+      return Direcao.ESQUERDA
+   elif KEY_RIGHT == code:
+      return Direcao.DIREITA
+   else:
+      return None
+   ...
+...
+
+from sys import argv
+qtd_args = len(argv)
+uso_do_teclado = (qtd_args > 1 and argv[1] == "--teclado")
 
 # roda o jogo até não houver mais jogadas.
 while jogadas_restantes() != 0:
+   # desenha todo tabuleiro e seus objetos.
+   tabuleiro.desenha_tudo()
+   # pega 'input' do teclado.
    tecla = tabuleiro.janela.getch()
+   # pega possível tecla direcional, e converte-a
+   # na sua respectiva Direção.
+   seta = converte_em_direcoes(tecla)
 
    # escape da partida.
-   if tecla == ord('s'): break
+   if tecla == ord('s') or tecla == ord('S'):
+      break
 
-   #try:
-   # coordenadas do mouse relativo a janela.
-   coord = tabuleiro.posicoes()
-   try:
-      local = tabuleiro.posicao_clicada(coord)
-      tabuleiro.coloca_peca(jogadores[primeiro], local)
-   except ForaTabuleiroError:
-      tabuleiro.janela.addstr(1,0,"fora do tabuleiro!")
-      tabuleiro.janela.refresh()
-      # dá chance a outro clique.
-      continue 
+   # uso do teclado para jogar
+   if uso_do_teclado:
+      if seta is not None:
+         tabuleiro.seletor.move(seta)
+         local = tabuleiro.seletor.atual
+         continue
+      elif tecla == KEY_ENTER:
+         tabuleiro.coloca_peca(
+            jogadores[primeiro],
+            tabuleiro.seletor.atual
+         )
+      ...
+   # uso do mouse.
+   else:
+      # coordenadas do mouse relativo a janela.
+      coord = tabuleiro.posicoes()
+      try:
+         local = tabuleiro.posicao_clicada(coord)
+         tabuleiro.coloca_peca(jogadores[primeiro], local)
+      except ForaTabuleiroError:
+         tabuleiro.informa_algo("fora do tabuleiro!")
+         # dá chance a outro clique.
+         continue
+      except LocalJaPreenchidoError:
+         tabuleiro.informa_algo("posição já marcada")
+         continue
+      ...
    ...
 
    try:
@@ -48,14 +96,14 @@ while jogadas_restantes() != 0:
          adiciona_peca(pecas_i, numeracao_em_coord(local))
       else:
          adiciona_peca(pecas_ii, numeracao_em_coord(local))
-   except LocalJaPreenchido:
-      # voltar para o começo do laço, e 
+   except LocalJaPreenchidoError:
+      # voltar para o começo do laço, e
       # tentar novamente.
       continue
    ...
 
    if peca_vitoriosa(pecas_i) or peca_vitoriosa(pecas_ii):
-      tabuleiro.marca_vitoria(fileira_ganha())
+      #tabuleiro.marca_vitoria(fileira_ganha())
       break
    ...
 
