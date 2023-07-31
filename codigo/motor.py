@@ -11,12 +11,12 @@ __all__ = [
    "pecas_i", "pecas_ii","matriz",
   "peca_vitoriosa", "adiciona_peca",
   "numeracao_em_coord", "jogadas_restantes",
-  "LocalJaPreenchido", "tabuleiro_str",
+  "LocalJaPreenchidoError", "tabuleiro_str",
   "fileira_ganha", "Fileira"
 ]
 
 # exceções:
-class LocalJaPreenchido(Exception):
+class LocalJaPreenchidoError(Exception):
    def __str__(self):
       msg = "este local já foi preenchido por uma peça."
       return msg
@@ -90,7 +90,7 @@ def adiciona_peca(peca, coordenada):
    if p2 and p1:
       matriz[linha][coluna] = peca
    else:
-      raise LocalJaPreenchido()
+      raise LocalJaPreenchidoError()
 ...
 
 # traduz um local numa coordenada legível
