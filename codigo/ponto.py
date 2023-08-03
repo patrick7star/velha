@@ -2,6 +2,8 @@
 # o que será importado:
 __all__ = ["Direcao", "Ponto", "Dimensao"]
 
+from math import (sqrt)
+
 # outro nome para o mesmo objeto.
 class Ponto:
    "representação do 'Ponto', posições (y, x)"
@@ -33,6 +35,12 @@ class Ponto:
       return self._y
    x = property(valor_x, doc="coordenada X(horizontal)")
    y = property(valor_y, doc="coordenada Y(vertical)")
+   def distancia(self, Q) -> float:
+      (xq, yq) = (Q.x, Q.y)
+      dx = self.x - xq
+      dy = self.y - yq
+      return sqrt(pow(dx, 2) + pow(dy, 2))
+   ...
 ...
 
 class Dimensao(Ponto):

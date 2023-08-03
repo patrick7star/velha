@@ -3,8 +3,10 @@
 from curses import *
 from math import floor, sqrt
 from random import randint
-
 # meus módulos:
+if __name__ == "__main__":
+   import sys
+   sys.argv.append("..")
 import biblioteca_externa.espiral as BEE
 from codigo.pecas import *
 from codigo.motor import (Fileira, LocalJaPreenchidoError)
@@ -47,9 +49,10 @@ class Quadrantes(IntEnum):
 
 class Tabuleiro:
    # construtor ...
-   def __init__(self, simbolo):
+   def __init__(self):
       # personalização do interface gráfica.
       self.janela = initscr()
+      #configurando janela ...
       start_color()
       #use_default_colors()
       mousemask(True) # habilita mouse.
@@ -90,58 +93,80 @@ class Tabuleiro:
       # cursor para movimentação via
       # teclas direcionais.
       self.seletor = Cursor()
+      self.seletor_ativado = True
    ...
 
-   '''
    def marca_vitoria(self, fileira):
       " marca o 'tiro' de vitória do vencedor. "
       # compr. da barra horizontais e verticais.
       comprimento = self.barra_h + 5
       comprimentoV = self.barra_v + 2
-      passo_adianteY = int(self.q1[0]/2)
-      passo_adianteX = int(self.q1[1]/3)
       cor = color_pair(5)  # coloração da barra.
+      coordenada = self.grade.quadrante_coordenada
 
-      if fileira == Fileira.HORIZONTAL_SUPERIOR:
-         y = self.q1[0] + passo_adianteY
-         x = self.q1[1] - passo_adianteX
-      elif fileira == Fileira.HORIZONTAL_MEDIO:
-         y = self.q4[0] + passo_adianteY
-         x = self.q4[1] - passo_adianteX
-      elif fileira == Fileira.HORIZONTAL_INFERIOR:
-         y = passo_adianteY + self.q7[0]
-         x = self.q7[1] - passo_adianteX
-      elif fileira == Fileira.VERTICAL_ESQUERDA:
-         y = self.q1[0] - passo_adianteY
-         x = self.q1[1] + 2
-      elif fileira == Fileira.VERTICAL_MEDIA:
-         y = self.q2[0] - passo_adianteY
-         x = self.q2[1] + 2
-      elif fileira == Fileira.VERTICAL_DIREITA:
-         y = self.q3[0] - passo_adianteY
-         x = self.q3[1] + 2
-      ...
+      # importando funções essenciais. Aqui, pois
+      # no cabeçalho do módulo entre em conflito,
+      # porque o módulo lá importa coisas daqui também,
+      # então entra-se numa importação circular.
+      from codigo.marcacao import (
+         risco_entre_pontos, 
+         risca_linha
+      )
 
-      # se estiver entre 1 à 3 é uma fileira horizontal,
-      # do contrário 4 à 6 vertical.
-      if 1 <= fileira <= 3:
-         for c in range(comprimento):
-            self.janela.addch(y, x+c, '=', cor)
-            napms(20)
-            self.janela.refresh()
+      if (fileira == Fileira.HORIZONTAL_SUPERIOR
+      or fileira == Fileira.HORIZONTAL_MEDIO
+      or fileira == Fileira.HORIZONTAL_INFERIOR):
+         if fileira == Fileira.HORIZONTAL_SUPERIOR:
+            q1 = Quadrantes.PRIMEIRO
+            q2 = Quadrantes.TERCEIRO
+         elif fileira == Fileira.HORIZONTAL_MEDIO:
+            q1 = Quadrantes.QUARTO
+            q2 = Quadrantes.SEXTO
+         else:
+            q1 = Quadrantes.SETIMO
+            q2 = Quadrantes.NONO
+         (A, B) = self.grade.limites(q1)
+         dy = abs(A.y - B.y) // 2
+         (C, D) = self.grade.limites(q2)
+         (P, Q) = (
+            Ponto(A.y + dy, A.x),
+            Ponto(C.y + dy, D.x)
+         )
+         risca_linha(self.janela, P, Q)
+      elif (fileira == Fileira.VERTICAL_ESQUERDA
+      or fileira == Fileira.VERTICAL_MEDIA
+      or fileira == Fileira.VERTICAL_DIREITA):
+         if fileira == Fileira.VERTICAL_ESQUERDA:
+            q1 = Quadrantes.PRIMEIRO
+            q2 = Quadrantes.SETIMO
+         elif fileira == Fileira.VERTICAL_MEDIA:
+            q1 = Quadrantes.SEGUNDO
+            q2 = Quadrantes.OITAVO
+         else:
+            q1 = Quadrantes.TERCEIRO
+            q2 = Quadrantes.NONO
+         (A, B) = self.grade.limites(q1)
+         dx = abs(A.x - B.x) // 2
+         (C, D) = self.grade.limites(q2)
+         (P, Q) = (
+            Ponto(A.y, A.x + dx),
+            Ponto(D.y, A.x + dx)
+         )
+         risca_linha(self.janela, P, Q)
          ...
-      elif 4 <= fileira <= 6:
-         for l in range(comprimentoV):
-            self.janela.addch(y+l, x, '&', cor)
-            napms(20)
-            self.janela.refresh()
-         ...
-      elif fileira == 7:
-         risca_diagonal(self.janela, self.q1, self.q9)
+      elif fileira == Fileira.DIAGONAL_PRINCIPAL:
+         (A, _) = self.grade.limites(Quadrantes.PRIMEIRO)
+         (_, B) = self.grade.limites(Quadrantes.NONO)
+         risco_entre_pontos(self.janela, A, B)
       else:
-         risca_diagonal_secundaria(self,self.q3,self.q7)
+         (A, B) = self.grade.limites(Quadrantes.TERCEIRO)
+         P = Ponto(A.y, B.x)
+         del A, B
+         (A, B) = self.grade.limites(Quadrantes.SETIMO)
+         Q = Ponto(B.y, A.x)
+         risco_entre_pontos(self.janela, P, Q)
+      ...
    ...
-   '''
    def coloca_peca(self, peca: Jogadores, local: Quadrantes) -> None:
       " informa a peça, e o quadrante que irá desenha-la."
       assert isinstance(local, Quadrantes)
@@ -223,6 +248,10 @@ class Tabuleiro:
    ...
 ...
 
+# elementos que formarão barras do tabuleiro.
+SIMBOLO = '&'
+BARRA_VERTICAL = '|'
+BARRA_HORIZONTAL = '='
 # métodos para fazer o Tabuleiro algo mais
 # dinâmico, e não só uma folha estática, onde
 # um rabisco é dicífil de apagar e impossível
@@ -244,26 +273,29 @@ class Tabuleiro(Tabuleiro):
       if not hasattr(self, "janela"):
          return False
       # formando barras horizontais:
-      melhors = "\u2550"
       self.janela.hline(
          Y + a, X,
-         "=", self.barra_h,
+         BARRA_HORIZONTAL, 
+         self.barra_h,
          color_pair(1)
       )
       self.janela.hline(
          Y + 2 * a, X,
-         "=", self.barra_h,
+         BARRA_HORIZONTAL, 
+         self.barra_h,
          color_pair(1)
       )
       # formando barras verticais:
       self.janela.vline(
          Y, X + c,
-         '#', self.barra_v,
+         BARRA_VERTICAL, 
+         self.barra_v,
          color_pair(1)
       )
       self.janela.vline(
          Y, X + 2 * c,
-         '#', self.barra_v,
+         BARRA_VERTICAL, 
+         self.barra_v,
          color_pair(1)
       )
       # as grades foram desenhadas com sucesso.
@@ -304,6 +336,8 @@ class Tabuleiro(Tabuleiro):
          self.desenha_peca_em(peca, posicao)
       ...
    ...
+   def desativa_seletor(self) -> None:
+      self.seletor_ativado = False
    def desenha_seletor(self) -> bool:
       quadrante = self.seletor.atual
       # retângulo definindo o quadrante.
@@ -334,91 +368,15 @@ class Tabuleiro(Tabuleiro):
       self.redesenha_pecas()
       if __debug__:
          self.grade.mostra_pontos(self.janela)
-      self.desenha_seletor()
+      if self.seletor_ativado:
+         self.desenha_seletor()
       self.renderiza()
    ...
 ...
 
-
-def risca(janela, A, B):
-   """ faz um risco diagonal dado um ponto A
-   (inicial), e um ponto B(final). """
-   (y1,x1),(y2,x2) = (A, B)
-   cor = color_pair(5)  # coloração da barra.
-   # estimando a quantia de "lugares" da matriz
-   # é mais ou menos a diagonal do retângulo
-   # que ela adequa-se.
-   L = int(floor(sqrt((x1-x2)**2+(y1-y2)**2)))
-   # proporção básica de quantos colunas
-   # têm para linhas.
-   variacao = (x2-x1)/(y2-y1)
-   while L > 0:
-      if not((x1 > x2) and (y1 <= y2)): break
-      x1 = int(x1+variacao)  # vai para direita.
-      L -= 1   # desconta na contagem.
-      y1 += 1  # vai um para baixo.
-      janela.addch(y1,x1, 'H',cor)
-      napms(50) # 50 milisegundos.
-      janela.refresh()
-   pass
-
-
-def projecao(I, F):
-   " faz a projeção de risco de um ponto inicial à um final"
-   (yi,xi),(yf,xf) = (I,F)
-   d_IF = int(floor(sqrt((xi-xf)**2+(yi-yf)**2)))
-   try:
-      # taxa de variação de x em relação a y.
-      dxdy = floor((xf-xi)/(yf-yi))
-   except ZeroDivisionError:
-      dxdy = 0
-   while d_IF > 0:
-      yi += 1
-      xi = int(xi+dxdy)
-      yield((yi,xi))
-      d_IF -= 1
-   pass
-
-
-def risca_diagonal(janela, A,B):
-   """ risca diagonal principal na janela, dado
-   um ponto inicial e um final; tais pontos
-   no formato (y,x) é claro!"""
-   (y1,x1),(y2,x2) = (A, B)
-   cor = color_pair(5)  # coloração da barra.
-   # estimando a quantia de "lugares" da matriz
-   # é mais ou menos a diagonal do retângulo
-   # que ela adequa-se.
-   L = int(floor(sqrt((x1-x2)**2+(y1-y2)**2)))
-   # proporção básica de quantos colunas
-   # têm para linhas.
-   variacao = abs(x1-x2)/abs(y1-y2)
-   #L = 21
-   while L > 0:
-      x1 = int(x1+variacao)  # vai para direita.
-      L -= 1   # desconta na contagem.
-      y1 += 1  # vai um para baixo.
-      if (y1 < y2) and (x1 < x2):
-         janela.addch(y1,x1, 'X',cor)
-      napms(50) # 50 milisegundos.
-      janela.refresh()
-   pass
-
-
-def risca_diagonal_secundaria(TAB,A,B):
-   """ uma função que projeta a trajetória a
-   cada passo, se não atingir o ponto B em tal
-   projeção, então faz um ajuste na direção até
-   que uma nova projeção alcance. """
-   # escolhendo um ponto certo.
-   for ponto in BEE.espiral(A):
-      if B in projecao(ponto,B):
-         A = ponto
-         break
-   risca(TAB.janela, A,B)
-   pass
-...
-
+# Tupla contendo os pontos supeior-esquerdo
+# e inferior-direito, nesta ordem, acima podemos
+# abstratamente determinar um retângulo qualquer.
 Retangulo = (Ponto, Ponto)
 
 class GradePixelada:
@@ -575,10 +533,9 @@ class Cursor:
    atual = property(_get_atual, None, None, None )
 ...
 
-# execução de testes:
-if __name__ == "__main__":
-   t = Tabuleiro('#')
+def teste_antigo_desconhecido():
    import random, sys
+   t = Tabuleiro()
 
    for i in range(9):
       aleatorio = random.randint(1,9)
@@ -600,4 +557,9 @@ if __name__ == "__main__":
    E = sys.exc_info()
    print("exeção:\n%s\n%s\n%s"%(E[0],E[1],E[2]))
    raise ForaTabuleiroError()
+...
+
+# execução de testes:
+if __name__ == "__main__":
+   pass
 ...
