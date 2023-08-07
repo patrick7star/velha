@@ -7,6 +7,21 @@ from codigo.motor import *
 # bibliote externas:
 from biblioteca_externa.utilitarios.lib import tela
 
+from os import (chmod, getenv)
+from stat import (S_IXGRP, S_IRWXU, S_IXOTH)
+from os.path import join as JoinPath
+# muda a permição do arquivo script que lança
+# estes jogo. Só clicar e jogar.
+try:
+   chmod("setup.py", S_IRWXU | S_IXGRP | S_IXOTH)
+except FileNotFoundError:
+   caminho = JoinPath(
+      getenv("PYTHON_CODES"), 
+      "velha/setup.py"
+   )
+   chmod(caminho, S_IRWXU | S_IXGRP | S_IXOTH)
+...
+
 
 # dício contendo todos os DOIS possíveis
 # jogadores.
@@ -18,7 +33,7 @@ jogadores = {
 primeiro = True
 # instância o tabuleiro para o jogo(inicializa
 # a "interface gráfica").
-tabuleiro = Tabuleiro('&')
+tabuleiro = Tabuleiro()
 
 from codigo.ponto import Direcao
 from curses import (
