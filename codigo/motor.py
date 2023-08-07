@@ -34,12 +34,20 @@ pecas_i, pecas_ii = ('X', 'O')
 tabuleiro_molde= """
    |     |
  {} |  {}  | {}
-==============
+===+=====+====
  {} |  {}  | {}
-==============
+===+=====+====
  {} |  {}  | {}
    |     |
 """
+# novo molde do mapa do resultado, porém,
+# usando separadores Unicode.
+tabuleiro_unicode = (
+   tabuleiro_molde
+   .replace('|', '\u2551')
+   .replace('=', '\u2550')
+   .replace('+', '\u256C')
+)
 
 
 # verifica vitória de uma peça.
@@ -126,7 +134,8 @@ def tabuleiro_str():
       s.replace('None',' ')
       for s in pecas_posicionais
    ]
-   return tabuleiro_molde.format(*pecas_posicionais)
+   #return tabuleiro_molde.format(*pecas_posicionais)
+   return tabuleiro_unicode.format(*pecas_posicionais)
 ...
 
 def jogadas_restantes():
