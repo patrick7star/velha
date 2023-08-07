@@ -118,7 +118,7 @@ while jogadas_restantes() != 0:
    ...
 
    if peca_vitoriosa(pecas_i) or peca_vitoriosa(pecas_ii):
-      #tabuleiro.marca_vitoria(fileira_ganha())
+      tabuleiro.marca_vitoria(fileira_ganha())
       break
    ...
 
