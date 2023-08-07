@@ -1,26 +1,48 @@
 #!/bin/python3 -BO
 
+from platform import system as sistema
+# dependendo da plataforma, modificar a permisão
+# do script principal, ou instalar depedendências.
+if sistema() == "Windows":
+   from subprocess import (Popen, DEVNULL, PIPE)
+   from sys import stdout as saida
+
+   pip_instalacao = Popen(
+      ["powershell", "pip install windows-curses"],
+      bufsize = 0, stdout=PIPE
+   )
+   pip_instalacao.wait()
+   (dados, _) = pip_instalacao.communicate()
+   dados = dados.decode(encoding="latin1")
+   if __debug__:
+      print("conteudo '%s'", dados)
+   if "Requirement already sastified" in dados:
+      print("'windows-curses' já está instalado.")
+   else:
+      print("instalação feita com sucesso.")
+elif sistema() == "Linux":
+   from os import (chmod, getenv)
+   from stat import (S_IXGRP, S_IRWXU, S_IXOTH)
+   from os.path import join as JoinPath
+   # muda a permição do arquivo script que lança
+   # estes jogo. Só clicar e jogar.
+   try:
+      chmod("setup.py", S_IRWXU | S_IXGRP | S_IXOTH)
+   except FileNotFoundError:
+      caminho = JoinPath(
+         getenv("PYTHON_CODES"), 
+         "velha/setup.py"
+      )
+      chmod(caminho, S_IRWXU | S_IXGRP | S_IXOTH)
+   ...
+...
+
 # biblioteca do jogo.
 from codigo.tabuleiro import *
 from codigo.pecas import *
 from codigo.motor import *
 # bibliote externas:
 from biblioteca_externa.utilitarios.lib import tela
-
-from os import (chmod, getenv)
-from stat import (S_IXGRP, S_IRWXU, S_IXOTH)
-from os.path import join as JoinPath
-# muda a permição do arquivo script que lança
-# estes jogo. Só clicar e jogar.
-try:
-   chmod("setup.py", S_IRWXU | S_IXGRP | S_IXOTH)
-except FileNotFoundError:
-   caminho = JoinPath(
-      getenv("PYTHON_CODES"), 
-      "velha/setup.py"
-   )
-   chmod(caminho, S_IRWXU | S_IXGRP | S_IXOTH)
-...
 
 
 # dício contendo todos os DOIS possíveis
@@ -76,12 +98,17 @@ while jogadas_restantes() != 0:
       break
 
    # uso do teclado para jogar
+   colocar_peca_pressionado = (
+      tecla == ord('c') or 
+      tecla == ord('C') or
+      tecla == KEY_ENTER
+   )
    if uso_do_teclado:
       if seta is not None:
          tabuleiro.seletor.move(seta)
          local = tabuleiro.seletor.atual
          continue
-      elif tecla == KEY_ENTER:
+      elif colocar_peca_pressionado:
          tabuleiro.coloca_peca(
             jogadores[primeiro],
             tabuleiro.seletor.atual
