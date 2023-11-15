@@ -1,18 +1,15 @@
 
 """
- Motor do jogo; aqui ficará todos 
-os procedimentos de verificação de vitória,
-reposição de peças; pontuação do placar e etc...
+ Motor do jogo; aqui ficará todos os procedimentos de verificação de
+ vitória, reposição de peças; pontuação do placar e etc...
 """
 
 
 # o que pode ser importado:
 __all__ = [
-   "pecas_i", "pecas_ii","matriz",
-  "peca_vitoriosa", "adiciona_peca",
-  "numeracao_em_coord", "jogadas_restantes",
-  "LocalJaPreenchidoError", "tabuleiro_str",
-  "fileira_ganha", "Fileira"
+  "peca_vitoriosa", "adiciona_peca", "jogadas_restantes", "Fileira",
+  "LocalJaPreenchidoError", "tabuleiro_str", "fileira_ganha",
+  "numeracao_em_coord"
 ]
 
 # exceções:
@@ -22,14 +19,12 @@ class LocalJaPreenchidoError(Exception):
       return msg
 ...
 
-# matriz contendo todas peças.
-# no ínicio estará apenas como "null".
+# matriz contendo todas peças. no ínicio estará apenas como "null".
 matriz = [
-   [None for i in range(3)] 
+   [None for i in range(3)]
    for j in range(3)
 ]
-# peças(portanto, jogadores).
-pecas_i, pecas_ii = ('X', 'O')
+
 # tabuleiro em texto, seu molde.
 tabuleiro_molde= """
    |     |
@@ -40,8 +35,7 @@ tabuleiro_molde= """
  {} |  {}  | {}
    |     |
 """
-# novo molde do mapa do resultado, porém,
-# usando separadores Unicode.
+# novo molde do mapa do resultado, porém, usando separadores Unicode.
 tabuleiro_unicode = (
    tabuleiro_molde
    .replace('|', '\u2551')
@@ -49,15 +43,15 @@ tabuleiro_unicode = (
    .replace('+', '\u256C')
 )
 
-
+from codigo.pecas import Jogadores
 # verifica vitória de uma peça.
-def peca_vitoriosa(peca):
+def peca_vitoriosa(peca: Jogadores) -> bool:
+   assert isinstance(peca, Jogadores)
    "verifica se peça é a vencedora"
-   # apelido para variável global para
-   # melhor a legibilidade e a codificação.
+   # apelido para variável global para melhor a legibilidade e
+   # a codificação.
    m = matriz
-   # todas proposições que validam uma vitória
-   # para tal peça.
+   # todas proposições que validam uma vitória para tal peça.
    if m[0][0] == m[0][1] == m[0][2] == peca:
       return True  # primeira linha.
 
@@ -82,27 +76,25 @@ def peca_vitoriosa(peca):
    elif m[0][2]==m[1][1]== m[2][0] == peca:
       return True # diagonal secundaria.
 
-   else: 
+   else:
       return False
 ...
 
-# Adiciona uma peça na matriz. Você 
-# adiciona apenas numa posição, ou 
-# seja, não pode sobreescrever peça
-# já posicionada.
-def adiciona_peca(peca, coordenada):
+# Adiciona uma peça na matriz. Você adiciona apenas numa posição, ou
+# seja, não pode sobreescrever peça já posicionada.
+def adiciona_peca(peca: Jogadores, coordenada) -> None:
    (linha,coluna) = coordenada
-   # proposições:
-   p1 = (peca != None) # peça válida.
-   p2 = (matriz[linha][coluna] == None)  # lacuna vaga.
-   if p2 and p1:
+   # proposições de 'peça válida' e 'lacuna vaga':
+   peca_valida = (peca != None) and isinstance(peca, Jogadores)
+   lacuna_vaga = (matriz[linha][coluna] == None)
+
+   if peca_valida and lacuna_vaga:
       matriz[linha][coluna] = peca
    else:
       raise LocalJaPreenchidoError()
 ...
 
-# traduz um local numa coordenada legível
-# pela matriz.
+# traduz um local numa coordenada legível pela matriz.
 def numeracao_em_coord(local):
    """ retorna uma coordenada exclusiva para
    matriz, então será adicionada uma peça nela."""
@@ -121,19 +113,23 @@ def numeracao_em_coord(local):
       return numeracao_em_coord(local % 9 + 1)
 ...
 
+from array import array as Array
 def tabuleiro_str():
-   """ retorna uma versão string do "tabuleiro"
-   de tic-toc-toe, tendo peças adicionadas, ou
-   não, e isto independe se a partida está
-   finalizada. """
-   pecas_posicionais = [
-      str(matriz[i][j]) for i in range(3)
-      for j in range(3)
-   ]
-   pecas_posicionais = [
-      s.replace('None',' ')
-      for s in pecas_posicionais
-   ]
+   """
+   retorna uma versão string do "tabuleiro" de tic-toc-toe, tendo
+   peças adicionadas, ou não, e isto independe se a partida está
+   finalizada.
+   """
+   pecas_posicionais = Array('u')
+   for i in range(3):
+      for j in range(3):
+         peca = matriz[i][j]
+         if peca is None:
+            pecas_posicionais.append(' ')
+         else:
+            pecas_posicionais.append(peca[0])
+      ...
+   ...
    #return tabuleiro_molde.format(*pecas_posicionais)
    return tabuleiro_unicode.format(*pecas_posicionais)
 ...
@@ -144,7 +140,6 @@ def jogadas_restantes():
 ...
 
 # biblioteca padrão.
-import enum
 from enum import (auto, IntEnum)
 
 class Fileira(IntEnum):
@@ -159,23 +154,21 @@ class Fileira(IntEnum):
 ...
 
 def fileira_ganha():
-   """ 
-   retorna o número da fileira ganha no jogo.
-   A numeração é a seguinte: 1ª linha superior;
-   2ª linha do meio; 3ª linha inferior; 4ª coluna
-   da esquerda; 5ª coluna do meio; 6ª coluna da
-   direita; 7ª diagonal principal e 8ª diagonal
-   secundária.
    """
-   if peca_vitoriosa(pecas_i):
-      peca = pecas_i
-   elif peca_vitoriosa(pecas_ii):
-      peca = pecas_ii
+   retorna o número da fileira ganha no jogo. A numeração é a seguinte:
+   1ª linha superior; 2ª linha do meio; 3ª linha inferior; 4ª coluna
+   da esquerda; 5ª coluna do meio; 6ª coluna da direita; 7ª diagonal
+   principal e 8ª diagonal secundária.
+   """
+   if peca_vitoriosa(Jogadores.XIS):
+      peca = Jogadores.XIS
+   elif peca_vitoriosa(Jogadores.BOLA):
+      peca = Jogadores.BOLA
    else:
       raise Exception("não há vencedor; jogo empatado!")
 
    if matriz[0][0] == matriz[0][1] == matriz[0][2] == peca:
-      return Fileira.HORIZONTAL_SUPERIOR 
+      return Fileira.HORIZONTAL_SUPERIOR
 
    elif matriz[1][0] == matriz[1][1] == matriz[1][2] == peca:
       return Fileira.HORIZONTAL_MEDIO
@@ -196,31 +189,7 @@ def fileira_ganha():
       # diagonal principal.
       return Fileira.DIAGONAL_PRINCIPAL
 
-   else: 
+   else:
       # diagonal secundaria.
       return Fileira.DIAGONAL_SECUNDARIA
-... 
-
-# excuções de testes:
-if __name__ == '__main__':
-   peca = 'x'
-   print(tabuleiro_str())
-   print('jogo ganho=', peca_vitoriosa(peca))
-   adiciona_peca(peca, (0,0))
-   print(tabuleiro_str())
-   adiciona_peca(peca, (1,1))
-   adiciona_peca(peca, (2,1))
-   print(tabuleiro_str)
-   print('jogo ganho=', peca_vitoriosa(peca))
-   #matriz[0][2], matriz[1][2], matriz[2][2] = peca,peca,peca
-   adiciona_peca(peca, (0,2))
-   adiciona_peca(peca, (1,2))
-   print(tabuleiro_str())
-   adiciona_peca(peca, (2,2))
-   print(tabuleiro_str())
-   print('jogo ganho=', peca_vitoriosa(peca))
-
-   try:
-      adiciona_peca(peca,(0,2))
-   except:
-      print("tente outra coordenada!")
+...

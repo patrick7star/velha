@@ -8,12 +8,10 @@ if __name__ == "__main__":
    import sys
    sys.argv.append("..")
 import biblioteca_externa.espiral as BEE
-from codigo.pecas import *
 from codigo.motor import (Fileira, LocalJaPreenchidoError)
 from codigo.ponto import *
 
-
-# o que pode ser importado.
+# o que pode ser importado?
 __all__ = ['Tabuleiro',"ForaTabuleiroError"]
 
 
@@ -25,12 +23,12 @@ class ForaTabuleiroError(Exception):
 ...
 
 from enum import (IntEnum, auto)
-# enumeradores:
+# enumerador que representa, individualmente,
+# cada quadrante da tabela.
 class Quadrantes(IntEnum):
    """
-   A contagem começa do superior esquerdo,
-   indo à direita, e para baixo quando alcança
-   a última coluna:
+   A contagem começa do superior esquerdo, indo à direita, e para
+   baixo quando alcança a última coluna:
 
                1º 2º 3º
                4º 5º 6º
@@ -47,8 +45,12 @@ class Quadrantes(IntEnum):
    NONO  = auto()
 ...
 
+from codigo.pecas import Jogadores
+from random import choice
+# tipo de peça que é desenhada lá.
+MatrizPeca = list[list[str]]
+
 class Tabuleiro:
-   # construtor ...
    def __init__(self):
       # personalização do interface gráfica.
       self.janela = initscr()
@@ -94,6 +96,9 @@ class Tabuleiro:
       # teclas direcionais.
       self.seletor = Cursor()
       self.seletor_ativado = True
+      # info na barra de status.
+      self.mensagem = None
+      self.lugar = Ponto(self.LIN - 1, 4)
    ...
 
    def marca_vitoria(self, fileira):
@@ -109,7 +114,7 @@ class Tabuleiro:
       # porque o módulo lá importa coisas daqui também,
       # então entra-se numa importação circular.
       from codigo.marcacao import (
-         risco_entre_pontos, 
+         risco_entre_pontos,
          risca_linha
       )
 
@@ -167,11 +172,42 @@ class Tabuleiro:
          risco_entre_pontos(self.janela, P, Q)
       ...
    ...
+
+   def _desenha_matriz(self, peca: Jogadores, posicao: Ponto) -> None:
+      matriz_str_peca = peca[1]
+      # dimensão das peças.
+      matriz_str_peca = peca[1]
+      (m, n) = len(matriz_str_peca), len(matriz_str_peca[0])
+
+      # determinando a cor...
+      match peca:
+         case Jogadores.XIS:
+            cor_selecionado = color_pair(3)  # X é vermelho.
+         case Jogadores.BOLA:
+            cor_selecionado = color_pair(4)  # O é azul.
+            #cor = color_pair(2)  # [] é verde.
+         case _:
+            raise Exception("nunca chega até aqui")
+      ...
+
+      # desenhando e pintando, pixel por pixel...
+      for i in range(m):
+         for j in range(n):
+            self.janela.addch(
+               # ajustando posição usando dimensão da peça.
+               i + (m // 2 - 1) + posicao.y,
+               j + (n // 2 + 1) + posicao.x,
+               matriz_str_peca[i][j], 
+               cor_selecionado
+            )
+         ...
+      ...
+   ...
+
    def coloca_peca(self, peca: Jogadores, local: Quadrantes) -> None:
       " informa a peça, e o quadrante que irá desenha-la."
       assert isinstance(local, Quadrantes)
-      # dimensão das peças.
-      (m, n) = len(peca), len(peca[0])
+      assert isinstance(peca, Jogadores)
       posicao = self.grade.quadrante_coordenada(local)
 
       # verifa se posição já não possui algo.
@@ -181,27 +217,7 @@ class Tabuleiro:
       else:
          raise LocalJaPreenchidoError()
 
-      for i in range(m):
-         for j in range(n):
-            # selecionando cor baseado na
-            # peça passada como argumento..
-            if peca == xis:
-               cor = color_pair(3)  # X é vermelho.
-            elif peca == bola:
-               cor = color_pair(4)  # O é azul.
-            elif peca == quadrado:
-               cor = color_pair(2)  # [] é verde.
-            else:
-               raise Exception('peça desconhecida')
-            self.janela.addch(
-               # ajustando posição usando 
-               # dimensão da peça.
-               i + (m // 2 - 1) + posicao.y,
-               j + (n // 2 + 1) + posicao.x,
-               peca[i][j], cor
-            )
-         ...
-      ...
+      self._desenha_matriz(peca, posicao)
    ...
 
    def posicao_clicada(self, coord: Ponto) -> Quadrantes:
@@ -219,8 +235,8 @@ class Tabuleiro:
 
    def posicoes(self) -> Ponto:
       """
-      obtem a coordenada do clique na janela,
-      e seu respectivo local no tabuleiro.
+      obtem a coordenada do clique na janela, e seu respectivo
+      local no tabuleiro.
       """
       try:
          coordenada = getmouse()
@@ -228,7 +244,7 @@ class Tabuleiro:
          # ao tipo de input do programa.
          coord_mouse = (coordenada[2],coordenada[1])
          return Ponto(*coord_mouse)
-      except: 
+      except:
          return None
    ...
 
@@ -239,13 +255,7 @@ class Tabuleiro:
       endwin()
    ...
    def informa_algo(self, mensagem: str) -> None:
-      posicao = Ponto(self.LIN - 1, 4)
-      self.janela.addstr(
-         posicao.y, posicao.x,
-         mensagem, color_pair(randint(1, 6))
-      )
-      self.janela.refresh()
-   ...
+      self.mensagem = mensagem
 ...
 
 # elementos que formarão barras do tabuleiro.
@@ -259,13 +269,9 @@ BARRA_HORIZONTAL = '='
 # sendo gerados constantemente.
 class Tabuleiro(Tabuleiro):
    """
-   tenta um método de renderização, ao 
-   invés de simplesmente ficar simplesmente
-   rabiscando a tela uma vez só.
+   tenta um método de renderização, ao invés de simplesmente ficar
+   simplesmente rabiscando a tela uma vez só.
    """
-   def renderiza(self) -> None:
-      self.janela.refresh()
-
    def desenha_barras(self) -> bool:
       # 'a' de altura e 'c' de comprimento(miniretângulos).
       (a, c) = (self.barra_v // 3, self.barra_h // 3)
@@ -275,65 +281,39 @@ class Tabuleiro(Tabuleiro):
       # formando barras horizontais:
       self.janela.hline(
          Y + a, X,
-         BARRA_HORIZONTAL, 
+         BARRA_HORIZONTAL,
          self.barra_h,
          color_pair(1)
       )
       self.janela.hline(
          Y + 2 * a, X,
-         BARRA_HORIZONTAL, 
+         BARRA_HORIZONTAL,
          self.barra_h,
          color_pair(1)
       )
       # formando barras verticais:
       self.janela.vline(
          Y, X + c,
-         BARRA_VERTICAL, 
+         BARRA_VERTICAL,
          self.barra_v,
          color_pair(1)
       )
       self.janela.vline(
          Y, X + 2 * c,
-         BARRA_VERTICAL, 
+         BARRA_VERTICAL,
          self.barra_v,
          color_pair(1)
       )
       # as grades foram desenhadas com sucesso.
       return True
    ...
-   def desenha_peca_em(self, peca, posicao: Ponto) -> None:
-      " informa a peça, e o quadrante que irá desenha-la."
-      # dimensão das peças.
-      (m, n) = len(peca), len(peca[0])
 
-      for i in range(m):
-         for j in range(n):
-            # selecionando cor baseado na
-            # peça passada como argumento..
-            if peca == xis:
-               cor = color_pair(3)  # X é vermelho.
-            elif peca == bola:
-               cor = color_pair(4)  # O é azul.
-            elif peca == quadrado:
-               cor = color_pair(2)  # [] é verde.
-            else:
-               raise Exception('peça desconhecida')
-            self.janela.addch(
-               # ajustando posição usando 
-               # dimensão da peça.
-               i + (m // 2 - 1) + posicao.y,
-               j + (n // 2 + 1) + posicao.x,
-               peca[i][j], cor
-            )
-         ...
-      ...
-   ...
    def redesenha_pecas(self) -> bool:
       "desenhando todas peças já colocadas."
       chave_valor = self.lugares_marcados.items()
       for (quadrante, peca) in chave_valor:
          posicao = self.grade.quadrante_coordenada(quadrante)
-         self.desenha_peca_em(peca, posicao)
+         self._desenha_matriz(peca, posicao)
       ...
    ...
    def desativa_seletor(self) -> None:
@@ -360,26 +340,44 @@ class Tabuleiro(Tabuleiro):
       # confirma desenho.
       return True
    ...
-   def desenha_tudo(self) -> None:
+   def desenha_status(self) -> None:
+      if (self.mensagem is None) or (self.lugar is None):
+         return None
+      posicao = self.lugar
+      cor = color_pair(randint(1, 6))
+      self.janela.addstr(
+         posicao.y, posicao.x,
+         self.mensagem, cor
+      )
+      # desativando novamente, apenas
+      # uma visualização permitida por erro.
+      self.mensagem = None
+   ...
+   def renderiza(self) -> None:
       self.janela.erase()
-      # renderizando o tabuleiro e todos seus
-      # objetos que o compõem.
+      # renderizando o tabuleiro e todos seus objetos que o compõem.
       self.desenha_barras()
       self.redesenha_pecas()
       if __debug__:
          self.grade.mostra_pontos(self.janela)
       if self.seletor_ativado:
          self.desenha_seletor()
-      self.renderiza()
+      self.desenha_status()
+      self.janela.refresh()
    ...
 ...
 
-# Tupla contendo os pontos supeior-esquerdo
-# e inferior-direito, nesta ordem, acima podemos
-# abstratamente determinar um retângulo qualquer.
+# Tupla contendo os pontos supeior-esquerdo e inferior-direito, nesta
+# ordem, acima podemos abstratamente determinar um retângulo qualquer.
 Retangulo = (Ponto, Ponto)
 
 class GradePixelada:
+   """
+   Quadrado que ajuda ajusta a delimitar os quadrantes respectivos do
+   Tabuleiro, dando suas coordenadas, e posicionando-o certo na tela
+   do terminal. É basicamente a área de desenha das peças e traços de
+   vitória, porem de forma mais organizada.
+   """
    def __init__(self, posicao: Ponto, tamanho: Dimensao):
       # canto superior esquerdo do retângulo onde
       # fica a tabela formando o tabuleiro.
@@ -471,7 +469,7 @@ class GradePixelada:
       ...
    ...
    def limites(self, qual: Quadrantes) -> Retangulo:
-      match qual: 
+      match qual:
          case Quadrantes.PRIMEIRO:
             return self.Q1
          case Quadrantes.SEGUNDO:
@@ -495,10 +493,7 @@ class GradePixelada:
 ...
 
 class Cursor:
-   """
-   selector permite navegar no tabuleiro pelas
-   setas direcinais.
-   """
+   "selector permite navegar no tabuleiro pelas setas direcinais."
    def __init__(self) -> None:
       # o quandrante em sí, com um valor inicial
       # mas seguirá o valor da sequência, baseado
@@ -539,7 +534,7 @@ def teste_antigo_desconhecido():
 
    for i in range(9):
       aleatorio = random.randint(1,9)
-      t.coloca_peca(xis, aleatorio)
+      t.coloca_peca(xis_matriz, aleatorio)
 
    tecla = t.janela.getch()
    coord = None
@@ -557,9 +552,4 @@ def teste_antigo_desconhecido():
    E = sys.exc_info()
    print("exeção:\n%s\n%s\n%s"%(E[0],E[1],E[2]))
    raise ForaTabuleiroError()
-...
-
-# execução de testes:
-if __name__ == "__main__":
-   pass
 ...
