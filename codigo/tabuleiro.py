@@ -12,7 +12,7 @@ from codigo.motor import (Fileira, LocalJaPreenchidoError)
 from codigo.ponto import *
 
 # o que pode ser importado?
-__all__ = ['Tabuleiro',"ForaTabuleiroError"]
+__all__ = ["Quadrantes", "GradePixelada", 'Tabuleiro',"ForaTabuleiroError"]
 
 
 # algumas exceções:
@@ -163,6 +163,7 @@ class Tabuleiro:
          (A, _) = self.grade.limites(Quadrantes.PRIMEIRO)
          (_, B) = self.grade.limites(Quadrantes.NONO)
          risco_entre_pontos(self.janela, A, B)
+         # traca_diagonal_principal(self.janela, A, B)
       else:
          (A, B) = self.grade.limites(Quadrantes.TERCEIRO)
          P = Ponto(A.y, B.x)
@@ -249,9 +250,10 @@ class Tabuleiro:
    ...
 
    def desmancha_tabuleiro(self) -> None:
-      # renderiza uma última vez.
-      self.renderiza()
+      # última visualizada no Tabuleiro.
       napms(1_000)
+      # renderiza uma última vez.
+      # self.renderiza()
       endwin()
    ...
    def informa_algo(self, mensagem: str) -> None:
@@ -526,6 +528,15 @@ class Cursor:
    def _get_atual(self):
       return self._atual
    atual = property(_get_atual, None, None, None )
+...
+
+import codigo.traca_dois_pontos as tdp
+
+def traca_diagonal_principal(janela: window, a: Ponto, b: Ponto):
+   grafo = tdp.todo_universo_entre(a, b)
+   coords = tdp. constroi_trajetoria(grafo, a, b)
+   for ponto in coords:
+      janela.addch(ponto.y, ponto.x, 'X')
 ...
 
 def teste_antigo_desconhecido():

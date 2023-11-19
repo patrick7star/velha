@@ -7,8 +7,6 @@ animaçãozinha) representando a vitória.
 
 # do próprio programa:
 from codigo.ponto import *
-if __name__ == "codigo.marcacao":
-   from codigo.tabuleiro import (Tabuleiro, Quadrantes)
 # biblioteca padrão do Python:
 from curses import (window, napms, color_pair)
 from unittest import (TestCase, main)
@@ -16,14 +14,14 @@ from time import sleep
 from math import sqrt
 
 # tempo de espera da pausa.
-PAUSA = 60
+PAUSA = 60 # milisegundos
 TRACO_H = '='
 TRACO_V = '&'
 
 __all__ = ["risca_linha", "risco_entre_pontos"]
 
-def desenha_ponto(janela: window, y: int,
-x: int, caractere: str) -> None:
+def desenha_ponto(janela: window, y: int, x: int, 
+  caractere: str) -> None:
    assert len(caractere) == 1
    (Y, X) = janela.getmaxyx()
    if y >= Y or x >= X:
@@ -65,24 +63,6 @@ def risca_linha(janela: window, A: Ponto, B: Ponto) -> None:
 def pertence_a_linha(A: Ponto, linha: iter) -> bool:
    pass 
 
-'''
-def projecao(I: Ponto, F: Ponto):
-   " faz a projeção de risco de um ponto inicial à um final"
-   (yi, xi, yf, xf) = (I.y, I.x, F.y, F.x)
-   S = pow(xi - xf, 2) + pow(yf - yi, 2)
-   d_IF = int(floor(sqrt(S)))
-   try:
-      # taxa de variação de x em relação a y.
-      dxdy = floor((xf - xi) / (yf - yi))
-   except ZeroDivisionError:
-      dxdy = 0
-   while d_IF > 0:
-      yi += 1
-      xi = int(xi + dxdy)
-      yield(Ponto(yi, xi))
-      d_IF -= 1
-   pass
-...'''
 # projeta uma linha reta que intersecta tal Ponto.
 def projecao(P: Ponto) -> iter:
    (Y, X) = (P.y, P.x)
@@ -93,9 +73,8 @@ def projecao(P: Ponto) -> iter:
    ...
 ...
 
-# faz um rsico, porém não necessário reto, entre 
-# pontos, e não é necessário seu alinhamento.
 def risco_entre_pontos(janela:window, A: Ponto, B: Ponto) -> None:
+   "cuida dos riscos diagonais necessários."
    primeira_diagonal = (A.x < B.x and B.y > A.y)
    segunda_diagonal = (A.x > B.x and B.y > A.y)
    # comprimentos do retângulo formado pelos Pontos.
@@ -105,8 +84,7 @@ def risco_entre_pontos(janela:window, A: Ponto, B: Ponto) -> None:
    if primeira_diagonal:
       x = A.x; y = A.y
       for p in range(0, c):
-         # aumenta taxa de variação se 
-         # estiver muito distante.
+         # aumenta taxa de variação se estiver muito distante.
          if p % 5 != 0:
             x += dx // dy
             y += 1
@@ -129,6 +107,9 @@ def risco_entre_pontos(janela:window, A: Ponto, B: Ponto) -> None:
    ...
 ...
 
+# importação necessária para testes.
+if __name__ == "codigo.marcacao":
+   from codigo.tabuleiro import (Tabuleiro, Quadrantes)
 
 class Riscagem(TestCase):
    def riscosRetosHorizontais(self):
