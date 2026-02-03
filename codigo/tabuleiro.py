@@ -163,7 +163,6 @@ class Tabuleiro:
          (A, _) = self.grade.limites(Quadrantes.PRIMEIRO)
          (_, B) = self.grade.limites(Quadrantes.NONO)
          risco_entre_pontos(self.janela, A, B)
-         # traca_diagonal_principal(self.janela, A, B)
       else:
          (A, B) = self.grade.limites(Quadrantes.TERCEIRO)
          P = Ponto(A.y, B.x)
@@ -530,37 +529,30 @@ class Cursor:
    atual = property(_get_atual, None, None, None )
 ...
 
-import codigo.traca_dois_pontos as tdp
+from unittest import (TestCase)
+import random, sys
 
-def traca_diagonal_principal(janela: window, a: Ponto, b: Ponto):
-   grafo = tdp.todo_universo_entre(a, b)
-   coords = tdp. constroi_trajetoria(grafo, a, b)
-   for ponto in coords:
-      janela.addch(ponto.y, ponto.x, 'X')
-...
+class PrototipoDoJogo(TestCase):
+   def runTest():
+      t = Tabuleiro()
 
-def teste_antigo_desconhecido():
-   import random, sys
-   t = Tabuleiro()
+      for i in range(9):
+         aleatorio = random.randint(1,9)
+         t.coloca_peca(xis_matriz, aleatorio)
 
-   for i in range(9):
-      aleatorio = random.randint(1,9)
-      t.coloca_peca(xis_matriz, aleatorio)
+      tecla = t.janela.getch()
+      coord = None
+      try:
+         coord = getmouse()
+      except:
+         coord = 'erro pelo caminho'
+         pass
+      else:
+         pass
+      t.janela.refresh()
+      endwin()
 
-   tecla = t.janela.getch()
-   coord = None
-   try:
-      coord = getmouse()
-   except:
-      coord = 'erro pelo caminho'
-      pass
-   else:
-      pass
-   t.janela.refresh()
-   endwin()
-
-   print("coordenas ==> %s"%coord)
-   E = sys.exc_info()
-   print("exeção:\n%s\n%s\n%s"%(E[0],E[1],E[2]))
-   raise ForaTabuleiroError()
-...
+      print("coordenas ==> %s"%coord)
+      E = sys.exc_info()
+      print("exeção:\n%s\n%s\n%s"%(E[0],E[1],E[2]))
+      raise ForaTabuleiroError()
